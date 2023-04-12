@@ -8,7 +8,7 @@ module.exports = {
         console.log('sending overwatch patch notes url');
         await interaction.deferReply();
 		await wait(4000);
-		await interaction.editReply('https://overwatch.blizzard.com/en-us/news/patch-notes/');
+		await interaction.reply('https://overwatch.blizzard.com/en-us/news/patch-notes/');
         
 	},
 };

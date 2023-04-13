@@ -37,5 +37,11 @@ for (const file of commandFiles) {
 	}
 }
 
+client.on("message", (message) => {
+	if(message.content == "!pang"){ // Check if content of message is "!ping"
+			message.channel.send("pung!"); // Call .send() on the channel object the message was sent in
+		}
+	});
+
 // Log in to Discord with your client's token
 client.login(token);

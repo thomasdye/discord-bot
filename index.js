@@ -21,6 +21,12 @@ for (const file of eventFiles) {
 	}
 }
 
+client.on("message", msg => {
+	if (msg.content === "ping") {
+	  msg.reply("pong");
+	}
+  });
+
 // Commands
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));

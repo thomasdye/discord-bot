@@ -51,14 +51,10 @@ const fs = require('fs');
 
 const { Client, GatewayIntentBits } = require('discord.js');
 
-const client = new Client({
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.MessageContent,
-		GatewayIntentBits.GuildMembers,
-	],
-});
+const client = new Discord.Client({ intents: [
+	Discord.GatewayIntentBits.Guilds,
+	Discord.GatewayIntentBits.GuildMessages
+  ]})
 
 let rawdata = fs.readFileSync('config.json');
 let config = JSON.parse(rawdata);

@@ -46,17 +46,42 @@
 // // Log in to Discord with your client's token
 // client.login(token);
 
-const Discord = require("discord.js")
-const client = new Discord.Client()
+const Discord = require('discord.js');
+const fs = require('fs');
 
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`)
-})
+const { Client, Intents } = require('discord.js');
+
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+
+let rawdata = fs.readFileSync('config.json');
+let config = JSON.parse(rawdata);
+
+const TOKEN = process.env.TOKEN
+const prefix = config.prefix
+
+// client.on('message', message => {
+//     if (!message.content.startsWith(prefix) || message.author.bot)
+//         return;
+//     const args = message.content.slice(prefix.lenght).split(/ +/)
+//     const command = args[1].toLowerCase()
+//     console.log(args)
+//     // Command test!
+// })
 
 client.on("message", msg => {
-  if (msg.content === "ping") {
-    msg.reply("pong");
-  }
-})
+	if (msg.content === "ping") {
+	  msg.reply("pong");
+	}
+  })
 
-client.login(process.env.TOKEN)
+client.once('ready', () => {
+    console.log("Discord bot online")
+});
+
+client.on("message", msg => {
+	if (msg.content === "ping") {
+	  msg.reply("pong");
+	}
+  })
+
+client.login(TOKEN)
